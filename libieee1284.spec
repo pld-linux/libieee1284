@@ -5,7 +5,7 @@ Version:	0.1.6
 Release:	1
 License:	GPL
 Group:		Libraries
-Source0:	ftp://cyberelk.net/tim/data/%{name}/devel/%{name}-%{version}.tar.gz
+Source0:	http://cyberelk.net/tim/data/%{name}/devel/%{name}-%{version}.tar.gz
 URL:		http://cyberelk.net/tim/libieee1284/index.html
 BuildRequires:	docbook-dtd41-sgml
 BuildRequires:	docbook-utils
