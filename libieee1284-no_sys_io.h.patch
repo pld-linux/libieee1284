@@ -6,7 +6,7 @@ diff -uNr libieee1284-0.2.1.orig/src/access_io.c libieee1284-0.2.1/src/access_io
  #include "ppdev.h"
  
 -#ifdef HAVE_LINUX
-+#if defined(HAVE_LINUX) && !defined(__powerpc__)
++#if (defined(HAVE_LINUX) && !(defined(__powerpc__) || defined(__sparc__)))
  
  #include <sys/io.h>
  
@@ -15,7 +15,7 @@ diff -uNr libieee1284-0.2.1.orig/src/access_io.c libieee1284-0.2.1/src/access_io
  raw_inb (struct parport_internal *port, unsigned long addr)
  {
 -#if defined(HAVE_LINUX) || defined(HAVE_CYGWIN_9X) || defined(HAVE_OBSD_I386)
-+#if (defined(HAVE_LINUX) && !defined(__powerpc__)) || defined(HAVE_CYGWIN_9X) || defined(HAVE_OBSD_I386)
++#if (defined(HAVE_LINUX) && !(defined(__powerpc__) || defined(__sparc__))) || defined(HAVE_CYGWIN_9X) || defined(HAVE_OBSD_I386)
    return inb (addr);
  #elif defined(HAVE_SOLARIS)
    struct iopbuf tmpbuf;
@@ -24,7 +24,7 @@ diff -uNr libieee1284-0.2.1.orig/src/access_io.c libieee1284-0.2.1/src/access_io
  raw_outb (struct parport_internal *port, unsigned char val, unsigned long addr)
  {
 -#if defined(HAVE_LINUX) || defined(HAVE_CYGWIN_9X) || defined(HAVE_OBSD_I386)
-+#if (defined(HAVE_LINUX) && !defined(__powerpc__)) || defined(HAVE_CYGWIN_9X) || defined(HAVE_OBSD_I386)
++#if (defined(HAVE_LINUX) && !(defined(__powerpc__) || defined(__sparc__))) || defined(HAVE_CYGWIN_9X) || defined(HAVE_OBSD_I386)
    outb_p (val, addr);
  #elif defined(HAVE_SOLARIS)
    struct iopbuf tmpbuf;
@@ -33,7 +33,7 @@ diff -uNr libieee1284-0.2.1.orig/src/access_io.c libieee1284-0.2.1/src/access_io
      {
      case IO_CAPABLE:
 -#ifdef HAVE_LINUX
-+#if defined(HAVE_LINUX) && !defined(__powerpc__)
++#if (defined(HAVE_LINUX) && !(defined(__powerpc__) || defined(__sparc__)))
        if (ioperm (port->base, 3, 1) || ioperm (0x80, 1, 1))
          return E1284_INIT;
  #elif defined(HAVE_OBSD_I386)
@@ -45,7 +45,7 @@ diff -uNr libieee1284-0.2.1.orig/src/detect.c libieee1284-0.2.1/src/detect.c
  #include "detect.h"
  
 -#ifdef HAVE_LINUX
-+#if defined(HAVE_LINUX) && !defined(__powerpc__)
++#if (defined(HAVE_LINUX) && !(defined(__powerpc__) || defined(__sparc__)))
  #include <sys/io.h>
  #include "ppdev.h"
  #elif defined(HAVE_OBSD_I386)
@@ -54,7 +54,7 @@ diff -uNr libieee1284-0.2.1.orig/src/detect.c libieee1284-0.2.1/src/detect.c
      fd = open (name, O_RDONLY | O_NOCTTY);
      if (fd >= 0) {
 -#ifdef HAVE_LINUX
-+#if defined(HAVE_LINUX) && !defined(__powerpc__)
++#if (defined(HAVE_LINUX) && !(defined(__powerpc__) || defined(__sparc__)))
        if (!strcmp (type, "parport"))
  	{
  	  /* Make sure that we can actually claim the device.  This will
@@ -63,7 +63,7 @@ diff -uNr libieee1284-0.2.1.orig/src/detect.c libieee1284-0.2.1/src/detect.c
    }
    free(iomap);
 -  #elif defined(HAVE_LINUX)
-+  #elif defined(HAVE_LINUX) && !defined(__powerpc__)
++  #elif (defined(HAVE_LINUX) && !(defined(__powerpc__) || defined(__sparc__)))
    if (ioperm (0x378 /* say */, 3, 1) == 0) {
      ioperm (0x378, 3, 0);
      capabilities |= IO_CAPABLE;
@@ -75,7 +75,7 @@ diff -uNr libieee1284-0.2.1.orig/src/ports.c libieee1284-0.2.1/src/ports.c
  populate_by_guessing (struct parport_list *list, int flags)
  {
 -#if defined(HAVE_LINUX) || defined(HAVE_CYGWIN_9X) || defined(HAVE_OBSD_I386)
-+#if (defined(HAVE_LINUX) && !defined(__powerpc__)) || defined(HAVE_CYGWIN_9X) || defined(HAVE_OBSD_I386)
++#if (defined(HAVE_LINUX) && !(defined(__powerpc__) || defined(__sparc__))) || defined(HAVE_CYGWIN_9X) || defined(HAVE_OBSD_I386)
    add_port (list, flags, "0x378", "/dev/port", 0x378, 0, -1);
    add_port (list, flags, "0x278", "/dev/port", 0x278, 0, -1);
    add_port (list, flags, "0x3bc", "/dev/port", 0x3bc, 0, -1);
