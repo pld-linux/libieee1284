@@ -6,7 +6,7 @@ Release:	1
 License:	GPL
 Group:		Libraries
 Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/%{name}/%{name}-%{version}.tar.bz2
-Patch0:		%{name}-ppc.patch
+Patch0:		%{name}-no_sys_io.h.patch
 URL:		http://cyberelk.net/tim/libieee1284/index.html
 BuildRequires:	docbook-dtd41-sgml
 BuildRequires:	docbook-utils
