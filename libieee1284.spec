@@ -1,11 +1,11 @@
 Summary:	A library for interfacing IEEE 1284-compatible devices
 Summary(pl):	Biblioteka do komunikacji z urz±dzeniami kompatybilnymi z IEEE 1284
 Name:		libieee1284
-Version:	0.2.1
-Release:	2
+Version:	0.2.2
+Release:	1
 License:	GPL
 Group:		Libraries
-Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/%{name}/%{name}-%{version}.tar.bz2
+Source0:	http://cyberelk.net/tim/data/libieee1284/stable/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-no_sys_io.h.patch
 URL:		http://cyberelk.net/tim/libieee1284/index.html
 BuildRequires:	autoconf
@@ -97,6 +97,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS NEWS README TODO
+%attr(755,root,root) %{_bindir}/libieee1284_test
 %attr(755,root,root) %{_libdir}/*.so.*.*
 
 %files devel
