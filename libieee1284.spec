@@ -2,16 +2,16 @@ Summary:	A library for interfacing IEEE 1284-compatible devices
 Summary(pl):	Biblioteka do komunikacji z urz±dzeniami kompatybilnymi z IEEE 1284
 Name:		libieee1284
 Version:	0.2.1
-Release:	1
+Release:	2
 License:	GPL
 Group:		Libraries
 Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/%{name}/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-no_sys_io.h.patch
 URL:		http://cyberelk.net/tim/libieee1284/index.html
-BuildRequires:	docbook-dtd41-sgml
-BuildRequires:	docbook-utils
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	docbook-dtd41-sgml
+BuildRequires:	docbook-utils
 BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
