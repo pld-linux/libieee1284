@@ -6,6 +6,7 @@ Release:	1
 License:	GPL
 Group:		Libraries
 Source0:	http://cyberelk.net/tim/data/libieee1284/stable/%{name}-%{version}.tar.bz2
+# Source0-md5: c776639a05bcf3bf13748244e77d913d
 URL:		http://cyberelk.net/tim/libieee1284/index.html
 BuildRequires:	autoconf
 BuildRequires:	automake
