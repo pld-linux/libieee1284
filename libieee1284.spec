@@ -65,7 +65,7 @@ Python binding for libieee1284 library.
 Wi±zanie Pythona dla biblioteki libieee1284.
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q
 
 %build
 %{__libtoolize}
