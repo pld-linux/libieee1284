@@ -2,12 +2,11 @@ Summary:	A library for interfacing IEEE 1284-compatible devices
 Summary(pl):	Biblioteka do komunikacji z urz±dzeniami kompatybilnymi z IEEE 1284
 Name:		libieee1284
 Version:	0.2.9
-%define		_pre pre2
-Release:	0.%{_pre}.1
+Release:	1
 License:	GPL
 Group:		Libraries
-Source0:	http://cyberelk.net/tim/data/libieee1284/stable/%{name}-%{version}%{_pre}.tar.bz2
-# Source0-md5:	d9682040b3cb3bf8ece7f104cbb11dcd
+Source0:	http://cyberelk.net/tim/data/libieee1284/stable/%{name}-%{version}.tar.bz2
+# Source0-md5:	83ea1d5463a8f47ba5121cf38973b4a4
 URL:		http://cyberelk.net/tim/libieee1284/index.html
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake >= 1.6
@@ -66,7 +65,7 @@ Python binding for libieee1284 library.
 Wi±zanie Pythona dla biblioteki libieee1284.
 
 %prep
-%setup -q -n %{name}-%{version}%{_pre}
+%setup -q -n %{name}-%{version}
 
 %build
 %{__libtoolize}
