@@ -56,7 +56,7 @@ Statyczna wersja biblioteki libieee1284.
 %build
 rm -f missing
 %{__libtoolize}
-aclocal
+%{__aclocal}
 %{__autoconf}
 %{__automake}
 %configure
