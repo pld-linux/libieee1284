@@ -19,15 +19,20 @@ diff -uNr libieee1284-0.2.1.orig/src/access_io.c libieee1284-0.2.1/src/access_io
    return inb (addr);
  #elif defined(HAVE_SOLARIS)
    struct iopbuf tmpbuf;
-@@ -122,7 +122,7 @@
+@@ -122,8 +122,12 @@
  static void
  raw_outb (struct parport_internal *port, unsigned char val, unsigned long addr)
  {
 -#if defined(HAVE_LINUX) || defined(HAVE_CYGWIN_9X) || defined(HAVE_OBSD_I386)
 +#if (defined(HAVE_LINUX) && !(defined(__powerpc__) || defined(__sparc__))) || defined(HAVE_CYGWIN_9X) || defined(HAVE_OBSD_I386)
++# ifdef __alpha__
++  outb (val, addr);
++# else
    outb_p (val, addr);
++# endif
  #elif defined(HAVE_SOLARIS)
    struct iopbuf tmpbuf;
+   tmpbuf.port = addr;
 @@ -170,7 +170,7 @@
    switch (port->type)
      {
