@@ -1,0 +1,81 @@
+diff -uNr libieee1284-0.2.1.orig/src/access_io.c libieee1284-0.2.1/src/access_io.c
+--- libieee1284-0.2.1.orig/src/access_io.c	Wed Jul 31 18:23:31 2002
++++ libieee1284-0.2.1/src/access_io.c	Sun Aug 25 12:03:50 2002
+@@ -37,7 +37,7 @@
+ #include "parport.h"
+ #include "ppdev.h"
+ 
+-#ifdef HAVE_LINUX
++#if defined(HAVE_LINUX) && !defined(__powerpc__)
+ 
+ #include <sys/io.h>
+ 
+@@ -108,7 +108,7 @@
+ static unsigned char
+ raw_inb (struct parport_internal *port, unsigned long addr)
+ {
+-#if defined(HAVE_LINUX) || defined(HAVE_CYGWIN_9X) || defined(HAVE_OBSD_I386)
++#if (defined(HAVE_LINUX) && !defined(__powerpc__)) || defined(HAVE_CYGWIN_9X) || defined(HAVE_OBSD_I386)
+   return inb (addr);
+ #elif defined(HAVE_SOLARIS)
+   struct iopbuf tmpbuf;
+@@ -122,7 +122,7 @@
+ static void
+ raw_outb (struct parport_internal *port, unsigned char val, unsigned long addr)
+ {
+-#if defined(HAVE_LINUX) || defined(HAVE_CYGWIN_9X) || defined(HAVE_OBSD_I386)
++#if (defined(HAVE_LINUX) && !defined(__powerpc__)) || defined(HAVE_CYGWIN_9X) || defined(HAVE_OBSD_I386)
+   outb_p (val, addr);
+ #elif defined(HAVE_SOLARIS)
+   struct iopbuf tmpbuf;
+@@ -170,7 +170,7 @@
+   switch (port->type)
+     {
+     case IO_CAPABLE:
+-#ifdef HAVE_LINUX
++#if defined(HAVE_LINUX) && !defined(__powerpc__)
+       if (ioperm (port->base, 3, 1) || ioperm (0x80, 1, 1))
+         return E1284_INIT;
+ #elif defined(HAVE_OBSD_I386)
+diff -uNr libieee1284-0.2.1.orig/src/detect.c libieee1284-0.2.1/src/detect.c
+--- libieee1284-0.2.1.orig/src/detect.c	Thu Aug  8 14:40:12 2002
++++ libieee1284-0.2.1/src/detect.c	Sun Aug 25 12:04:53 2002
+@@ -30,7 +30,7 @@
+ #include "debug.h"
+ #include "detect.h"
+ 
+-#ifdef HAVE_LINUX
++#if defined(HAVE_LINUX) && !defined(__powerpc__)
+ #include <sys/io.h>
+ #include "ppdev.h"
+ #elif defined(HAVE_OBSD_I386)
+@@ -84,7 +84,7 @@
+     sprintf (name, "/dev/%s%d", type, i);
+     fd = open (name, O_RDONLY | O_NOCTTY);
+     if (fd >= 0) {
+-#ifdef HAVE_LINUX
++#if defined(HAVE_LINUX) && !defined(__powerpc__)
+       if (!strcmp (type, "parport"))
+ 	{
+ 	  /* Make sure that we can actually claim the device.  This will
+@@ -137,7 +137,7 @@
+     return 1;
+   }
+   free(iomap);
+-  #elif defined(HAVE_LINUX)
++  #elif defined(HAVE_LINUX) && !defined(__powerpc__)
+   if (ioperm (0x378 /* say */, 3, 1) == 0) {
+     ioperm (0x378, 3, 0);
+     capabilities |= IO_CAPABLE;
+diff -uNr libieee1284-0.2.1.orig/src/ports.c libieee1284-0.2.1/src/ports.c
+--- libieee1284-0.2.1.orig/src/ports.c	Sat Aug 24 17:39:56 2002
++++ libieee1284-0.2.1/src/ports.c	Sun Aug 25 12:03:50 2002
+@@ -295,7 +295,7 @@
+ static int
+ populate_by_guessing (struct parport_list *list, int flags)
+ {
+-#if defined(HAVE_LINUX) || defined(HAVE_CYGWIN_9X) || defined(HAVE_OBSD_I386)
++#if (defined(HAVE_LINUX) && !defined(__powerpc__)) || defined(HAVE_CYGWIN_9X) || defined(HAVE_OBSD_I386)
+   add_port (list, flags, "0x378", "/dev/port", 0x378, 0, -1);
+   add_port (list, flags, "0x278", "/dev/port", 0x278, 0, -1);
+   add_port (list, flags, "0x3bc", "/dev/port", 0x3bc, 0, -1);
