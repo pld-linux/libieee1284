@@ -1,12 +1,13 @@
 Summary:	A library for interfacing IEEE 1284-compatible devices
 Summary(pl):	Biblioteka do komunikacji z urz±dzeniami kompatybilnymi z IEEE 1284
 Name:		libieee1284
-Version:	0.2.8
-Release:	1
+Version:	0.2.9
+%define		_pre pre2
+Release:	0.%{_pre}.1
 License:	GPL
 Group:		Libraries
-# Source0-md5:	4bf1d9d15d2ecf0ea797becd29dbae75
-Source0:	http://cyberelk.net/tim/data/libieee1284/stable/%{name}-%{version}.tar.bz2
+Source0:	http://cyberelk.net/tim/data/libieee1284/stable/%{name}-%{version}%{_pre}.tar.bz2
+# Source0-md5:	d9682040b3cb3bf8ece7f104cbb11dcd
 URL:		http://cyberelk.net/tim/libieee1284/index.html
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -50,7 +51,7 @@ Static version of libieee1284 library.
 Statyczna wersja biblioteki libieee1284.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{version}%{_pre}
 
 %build
 rm -f missing
