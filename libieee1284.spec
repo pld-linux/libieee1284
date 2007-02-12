@@ -1,5 +1,5 @@
 Summary:	A library for interfacing IEEE 1284-compatible devices
-Summary(pl):	Biblioteka do komunikacji z urz眃zeniami kompatybilnymi z IEEE 1284
+Summary(pl.UTF-8):   Biblioteka do komunikacji z urz膮dzeniami kompatybilnymi z IEEE 1284
 Name:		libieee1284
 Version:	0.2.10
 Release:	2
@@ -21,13 +21,13 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 The libieee1284 library is for communicating with parallel port
 devices.
 
-%description -l pl
-Biblioteka libieee1284 s硊縴 do komunikacji z urz眃zeniami
-pod潮czanymi do portu r體noleg砮go.
+%description -l pl.UTF-8
+Biblioteka libieee1284 s艂u偶y do komunikacji z urz膮dzeniami
+pod艂膮czanymi do portu r贸wnoleg艂ego.
 
 %package devel
 Summary:	Files for developing applications that use libieee1284
-Summary(pl):	Pliki do tworzenia program體 u縴waj眂ych libieee1284
+Summary(pl.UTF-8):   Pliki do tworzenia program贸w u偶ywaj膮cych libieee1284
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -35,25 +35,25 @@ Requires:	%{name} = %{version}-%{release}
 The header files, libtool library and man pages for developing
 applications that use libieee1284.
 
-%description devel -l pl
-Pliki nag丑wkowe i dokumentacja do tworzenia program體 u縴waj眂ych
+%description devel -l pl.UTF-8
+Pliki nag艂贸wkowe i dokumentacja do tworzenia program贸w u偶ywaj膮cych
 libieee1284.
 
 %package static
 Summary:	Static version of libieee1284
-Summary(pl):	Statyczna wersja libieee1284
+Summary(pl.UTF-8):   Statyczna wersja libieee1284
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static version of libieee1284 library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna wersja biblioteki libieee1284.
 
 %package -n python-ieee1284
 Summary:	Python binding for libieee1284 library
-Summary(pl):	Wi眤anie Pythona dla biblioteki libieee1284
+Summary(pl.UTF-8):   Wi膮zanie Pythona dla biblioteki libieee1284
 Group:		Libraries
 Requires:	%{name} = %{version}-%{release}
 %pyrequires_eq	python-libs
@@ -61,8 +61,8 @@ Requires:	%{name} = %{version}-%{release}
 %description -n python-ieee1284
 Python binding for libieee1284 library.
 
-%description -n python-ieee1284 -l pl
-Wi眤anie Pythona dla biblioteki libieee1284.
+%description -n python-ieee1284 -l pl.UTF-8
+Wi膮zanie Pythona dla biblioteki libieee1284.
 
 %prep
 %setup -q
