@@ -1,5 +1,5 @@
 Summary:	A library for interfacing IEEE 1284-compatible devices
-Summary(pl.UTF-8):   Biblioteka do komunikacji z urządzeniami kompatybilnymi z IEEE 1284
+Summary(pl.UTF-8):	Biblioteka do komunikacji z urządzeniami kompatybilnymi z IEEE 1284
 Name:		libieee1284
 Version:	0.2.10
 Release:	2
@@ -27,7 +27,7 @@ podłączanymi do portu równoległego.
 
 %package devel
 Summary:	Files for developing applications that use libieee1284
-Summary(pl.UTF-8):   Pliki do tworzenia programów używających libieee1284
+Summary(pl.UTF-8):	Pliki do tworzenia programów używających libieee1284
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -41,7 +41,7 @@ libieee1284.
 
 %package static
 Summary:	Static version of libieee1284
-Summary(pl.UTF-8):   Statyczna wersja libieee1284
+Summary(pl.UTF-8):	Statyczna wersja libieee1284
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
@@ -53,7 +53,7 @@ Statyczna wersja biblioteki libieee1284.
 
 %package -n python-ieee1284
 Summary:	Python binding for libieee1284 library
-Summary(pl.UTF-8):   Wiązanie Pythona dla biblioteki libieee1284
+Summary(pl.UTF-8):	Wiązanie Pythona dla biblioteki libieee1284
 Group:		Libraries
 Requires:	%{name} = %{version}-%{release}
 %pyrequires_eq	python-libs
