@@ -1,12 +1,12 @@
 Summary:	A library for interfacing IEEE 1284-compatible devices
 Summary(pl.UTF-8):	Biblioteka do komunikacji z urządzeniami kompatybilnymi z IEEE 1284
 Name:		libieee1284
-Version:	0.2.10
-Release:	4
-License:	GPL
+Version:	0.2.11
+Release:	1
+License:	GPL v2+
 Group:		Libraries
-Source0:	http://cyberelk.net/tim/data/libieee1284/stable/%{name}-%{version}.tar.bz2
-# Source0-md5:	8b6e6bd74ad5e49e7fa5da07faf03e17
+Source0:	http://downloads.sourceforge.net/libieee1284/%{name}-%{version}.tar.bz2
+# Source0-md5:	b8fff9f3d121531bc17430e3f4ea6ed0
 URL:		http://cyberelk.net/tim/libieee1284/index.html
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake >= 1.6
@@ -83,7 +83,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -f $RPM_BUILD_ROOT%{py_sitedir}/*.{la,a}
+%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/*.{la,a}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -93,20 +93,24 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS NEWS README TODO
+%doc AUTHORS ChangeLog NEWS README TODO
 %attr(755,root,root) %{_bindir}/libieee1284_test
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%attr(755,root,root) %{_libdir}/libieee1284.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libieee1284.so.3
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
+%attr(755,root,root) %{_libdir}/libieee1284.so
+%{_libdir}/libieee1284.la
 %{_includedir}/ieee1284.h
-%{_mandir}/man?/*
+%{_mandir}/man3/ieee1284_*.3*
+%{_mandir}/man3/libieee1284.3*
+%{_mandir}/man3/parport.3*
+%{_mandir}/man3/parport_list.3*
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libieee1284.a
 
 %files -n python-ieee1284
 %defattr(644,root,root,755)
