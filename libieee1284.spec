@@ -2,7 +2,7 @@ Summary:	A library for interfacing IEEE 1284-compatible devices
 Summary(pl.UTF-8):	Biblioteka do komunikacji z urządzeniami kompatybilnymi z IEEE 1284
 Name:		libieee1284
 Version:	0.2.11
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/libieee1284/%{name}-%{version}.tar.bz2
