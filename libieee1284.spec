@@ -1,3 +1,7 @@
+#
+# Conditional build:
+%bcond_without	static_libs	# static library
+
 Summary:	A library for interfacing IEEE 1284-compatible devices
 Summary(pl.UTF-8):	Biblioteka do komunikacji z urządzeniami kompatybilnymi z IEEE 1284
 Name:		libieee1284
@@ -15,6 +19,7 @@ BuildRequires:	docbook-utils
 BuildRequires:	libtool
 BuildRequires:	python
 BuildRequires:	python-devel
+BuildRequires:	rpmbuild(macros) >= 1.527
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -73,7 +78,8 @@ Wiązanie Pythona dla biblioteki libieee1284.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-%configure
+%configure \
+	%{__enable_disable static_libs static}
 
 %{__make}
 
@@ -83,7 +89,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/*.{la,a}
+%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/*.la
+%{?with_static_libs:%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/*.a}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -108,9 +115,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/parport.3*
 %{_mandir}/man3/parport_list.3*
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libieee1284.a
+%endif
 
 %files -n python-ieee1284
 %defattr(644,root,root,755)
