@@ -9,7 +9,7 @@ Version:	0.2.11
 Release:	3
 License:	GPL v2+
 Group:		Libraries
-Source0:	http://downloads.sourceforge.net/libieee1284/%{name}-%{version}.tar.bz2
+Source0:	https://downloads.sourceforge.net/libieee1284/%{name}-%{version}.tar.bz2
 # Source0-md5:	b8fff9f3d121531bc17430e3f4ea6ed0
 URL:		http://cyberelk.net/tim/libieee1284/index.html
 BuildRequires:	autoconf >= 2.53
