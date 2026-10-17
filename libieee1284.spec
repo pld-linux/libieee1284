@@ -6,7 +6,7 @@ Summary:	A library for interfacing IEEE 1284-compatible devices
 Summary(pl.UTF-8):	Biblioteka do komunikacji z urządzeniami kompatybilnymi z IEEE 1284
 Name:		libieee1284
 Version:	0.2.11
-Release:	4
+Release:	5
 License:	GPL v2+
 Group:		Libraries
 Source0:	https://downloads.sourceforge.net/libieee1284/%{name}-%{version}.tar.bz2
@@ -20,6 +20,7 @@ BuildRequires:	libtool
 BuildRequires:	python
 BuildRequires:	python-devel
 BuildRequires:	rpmbuild(macros) >= 1.527
+Obsoletes:	python-ieee1284 < 0.2.11-5
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -56,19 +57,6 @@ Static version of libieee1284 library.
 %description static -l pl.UTF-8
 Statyczna wersja biblioteki libieee1284.
 
-%package -n python-ieee1284
-Summary:	Python binding for libieee1284 library
-Summary(pl.UTF-8):	Wiązanie Pythona dla biblioteki libieee1284
-Group:		Libraries
-Requires:	%{name} = %{version}-%{release}
-%pyrequires_eq	python-libs
-
-%description -n python-ieee1284
-Python binding for libieee1284 library.
-
-%description -n python-ieee1284 -l pl.UTF-8
-Wiązanie Pythona dla biblioteki libieee1284.
-
 %prep
 %setup -q
 
@@ -79,6 +67,7 @@ Wiązanie Pythona dla biblioteki libieee1284.
 %{__autoheader}
 %{__automake}
 %configure \
+	--without-python \
 	%{__enable_disable static_libs static}
 
 %{__make}
@@ -88,9 +77,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-
-%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/*.la
-%{?with_static_libs:%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/*.a}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -102,12 +88,12 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README TODO
 %attr(755,root,root) %{_bindir}/libieee1284_test
-%attr(755,root,root) %{_libdir}/libieee1284.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libieee1284.so.3
+%{_libdir}/libieee1284.so.*.*.*
+%ghost %{_libdir}/libieee1284.so.3
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libieee1284.so
+%{_libdir}/libieee1284.so
 %{_libdir}/libieee1284.la
 %{_includedir}/ieee1284.h
 %{_mandir}/man3/ieee1284_*.3*
@@ -120,7 +106,3 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/libieee1284.a
 %endif
-
-%files -n python-ieee1284
-%defattr(644,root,root,755)
-%attr(755,root,root) %{py_sitedir}/ieee1284module.so
